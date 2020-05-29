@@ -11,15 +11,20 @@ const categoriesMock = [{
     label: 'Want to read'
   }];
 
-const Categories = () => {
-  const [selectedCategory, setSelectedCategory] = useState(0);
+const Categories = ({ changeCategory }) => {
+  const [selectedCategoryId, setSelectedCategoryId] = useState(0);
+
+  const handleCategoryChange = (categoryId) => {
+    setSelectedCategoryId(categoryId);
+    changeCategory(categoryId);
+  };
 
   return (
     <div className="col-4">
       {categoriesMock.map(({ id, label }) => (
         <li
-          className={`list-group-item d-flex justify-content-between align-items-center ${id === selectedCategory && 'active'}`}
-          onClick={() => setSelectedCategory(id)}
+          className={`list-group-item d-flex justify-content-between align-items-center ${id === selectedCategoryId && 'active'}`}
+          onClick={() => handleCategoryChange(id)}
         >
           {label}
           <span className="badge badge-primary badge-pill">3</span>

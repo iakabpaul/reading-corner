@@ -19,12 +19,12 @@ const renderPagination = () => (
   </ul>
 );
 
-const BooksList = () => (
+const BooksList = ({ books = [] }) => (
   <div className="col">
     <div className="list-group">
-      <BookCard />
-      <BookCard />
-      <BookCard />
+      {books.map(({ title, author }) => (
+        <BookCard title={title} author={author} />
+      ))}
     </div>
   {renderPagination()}
   </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import './book-card.style.scss';
 
-const BookCard = () => {
+const BookCard = ({ author, title }) => {
 
   return (
     <div className="card mb-3">
@@ -12,9 +12,10 @@ const BookCard = () => {
         <div className="col-md-8">
           <div className="card-body">
             <div className="my-card-header">
-              <h5 className="card-title">Card title</h5>
+              <h5 className="card-title">{title}</h5>
               <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
             </div>
+            <h6 className="text-muted">{author}</h6>
             <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
             <div className="my-button-container">
               <button type="button" class="btn btn-danger" aria-label="Close">

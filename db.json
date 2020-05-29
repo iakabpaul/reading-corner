@@ -1,0 +1,39 @@
+{
+  "statuses": [{
+    "id": 0,
+    "name": "Read"
+  }, {
+    "id": 1,
+    "name": "Reading"
+  }, {
+    "id": 2,
+    "name": "Want to read"
+  }
+  ],
+  "books": [{
+    "id": 0,
+    "title": "Some title",
+    "author": "Some author",
+    "status":  0
+  }, {
+    "id": 1,
+    "title": "Some title1",
+    "author": "Some author1",
+    "status":  0
+  }, {
+    "id": 2,
+    "title": "Some title2",
+    "author": "Some author2",
+    "status":  1
+  }, {
+    "id": 3,
+    "title": "Some title3",
+    "author": "Some author3",
+    "status":  2
+  }, {
+    "id": 4,
+    "title": "Some title4",
+    "author": "Some author4",
+    "status":  2
+  }]
+}
