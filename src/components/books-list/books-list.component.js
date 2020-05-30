@@ -6,7 +6,7 @@ import './book-list.style.scss';
 const renderPagination = () => (
   <ul className="pagination justify-content-center ">
     <li className="page-item disabled">
-      <a className="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+      <a className="page-link" href="#" tabIndex="-1" aria-disabled="true">Previous</a>
     </li>
     <li className="page-item"><a className="page-link" href="#">1</a></li>
     <li className="page-item active" aria-current="page">
@@ -19,11 +19,11 @@ const renderPagination = () => (
   </ul>
 );
 
-const BooksList = ({ books = [] }) => (
+const BooksList = ({ books = [], deleteBook }) => (
   <div className="col">
     <div className="list-group">
-      {books.map(({ title, author }) => (
-        <BookCard title={title} author={author} />
+      {books.map(({ title, author, description, id }) => (
+        <BookCard title={title} author={author} description={description} deleteBook={deleteBook} id={id} key={id} />
       ))}
     </div>
   {renderPagination()}

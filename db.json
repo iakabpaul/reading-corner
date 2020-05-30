@@ -1,39 +1,53 @@
 {
-  "statuses": [{
-    "id": 0,
-    "name": "Read"
-  }, {
-    "id": 1,
-    "name": "Reading"
-  }, {
-    "id": 2,
-    "name": "Want to read"
-  }
+  "statuses": [
+    {
+      "id": 0,
+      "name": "Read"
+    },
+    {
+      "id": 1,
+      "name": "Reading"
+    },
+    {
+      "id": 2,
+      "name": "Want to read"
+    }
   ],
-  "books": [{
-    "id": 0,
-    "title": "Some title",
-    "author": "Some author",
-    "status":  0
-  }, {
-    "id": 1,
-    "title": "Some title1",
-    "author": "Some author1",
-    "status":  0
-  }, {
-    "id": 2,
-    "title": "Some title2",
-    "author": "Some author2",
-    "status":  1
-  }, {
-    "id": 3,
-    "title": "Some title3",
-    "author": "Some author3",
-    "status":  2
-  }, {
-    "id": 4,
-    "title": "Some title4",
-    "author": "Some author4",
-    "status":  2
-  }]
+  "books": [
+    {
+      "id": 0,
+      "title": "Exciting Times",
+      "author": "Naoise Dolan",
+      "description": "In this wry, stylish debut, Dolan sets her sights on Ava, an Irish expat teaching English to the wealthy children of Hong Kong. Ava soon becomes romantically entangled with Julian, a rich banker who can’t commit, as well as with Edith, a lawyer who inspires both envy and desire. In this witty satire of the haves and have nots, Dolan explores tender, insightful truths about the vagaries of modern love.",
+      "status": 0
+    },
+    {
+      "id": 1,
+      "title": "Memorial Drive",
+      "author": "Natasha Tretheway",
+      "description": "For Natasha Trethewey, the end is very much the beginning, for both her startling new memoir and, as we learn across its pages, the second iteration of herself. The work opens in the immediate aftermath of her mother’s murder—committed by Trethewey’s former stepfather when the author was just 19—before confronting the years preceding the event, which she admits she’d long treated with “willed amnesia buried deep in me like a root.” ",
+      "status": 0
+    },
+    {
+      "id": 2,
+      "title": "The Jetsetters",
+      "author": "Amanda Eyre Ward",
+      "description": "In Eyre Ward’s (How to Be Lost, The Same Sky) The Jetsetters, everyone is, to put it mildly, a colossal wreck. Lucky for us, they each—all three Perkins children, plus their widowed matriarch Charlotte—also get a say.",
+      "status": 1
+    },
+    {
+      "id": 3,
+      "title": "Had I Known",
+      "author": "Barbara Ehrenreich",
+      "description": "This compendium of Ehrenreich’s newspaper and magazine columns spans such diverse topics as cults, health food crazes, housework, welfare programs, and O.J. Simpson. In the age of late capitalism, Ehrenreich's prophetic eye for the brokenness of systems has never been more timely. ",
+      "status": 2
+    },
+    {
+      "id": 4,
+      "title": "American Poison: How Racial Hostility Destroyed Our Promise",
+      "author": "Eduardo Porter",
+      "description": "In this fascinating book, Porter sees the matrix of race in America. Weaving together social science research and historical context, he dissects how racism infects every stratum of American society, from unions to public education to immigration policy. Porter, a New York Times economics reporter who has covered the intersection of race and economics around the world, is uniquely conversant and globally-minded on these issues. ",
+      "status": 2
+    }
+  ]
 }

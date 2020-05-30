@@ -1,17 +1,9 @@
 import React, { useState } from 'react';
+import AddBookForm from 'components/add-book-form/add-book-form.component';
 
-const categoriesMock = [{
-    id: 0,
-    label: 'Read',
-  }, {
-    id: 1,
-    label: 'Reading'
-  }, {
-    id: 2,
-    label: 'Want to read'
-  }];
+import './categories.style.scss';
 
-const Categories = ({ changeCategory }) => {
+const Categories = ({ addBook, categories = [], changeCategory }) => {
   const [selectedCategoryId, setSelectedCategoryId] = useState(0);
 
   const handleCategoryChange = (categoryId) => {
@@ -21,15 +13,24 @@ const Categories = ({ changeCategory }) => {
 
   return (
     <div className="col-4">
-      {categoriesMock.map(({ id, label }) => (
+      {categories.map(({ id, name }) => (
         <li
           className={`list-group-item d-flex justify-content-between align-items-center ${id === selectedCategoryId && 'active'}`}
           onClick={() => handleCategoryChange(id)}
+          key={id}
         >
-          {label}
-          <span className="badge badge-primary badge-pill">3</span>
+          {name}
+          {/*<span className="badge badge-primary badge-pill">3</span>*/}
         </li>
       ))}
+      <div className="input-group mb-3 my-category-section">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Book title"
+        />
+      </div>
+      <AddBookForm addBook={addBook} categoryId={selectedCategoryId} />
     </div>
   );
 };

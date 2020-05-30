@@ -1,12 +1,14 @@
 import React from 'react';
 import './book-card.style.scss';
 
-const BookCard = ({ author, title }) => {
+const BookCard = ({ author, title, description, deleteBook, id }) => {
+
+  const handleDelete = () => deleteBook(id);
 
   return (
     <div className="card mb-3">
       <div className="row no-gutters">
-        <div class="col-md-3">
+        <div className="col-md-3">
           <img src={require('assets/img/book.png')} className="card-img" alt="..." />
         </div>
         <div className="col-md-8">
@@ -16,9 +18,9 @@ const BookCard = ({ author, title }) => {
               <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
             </div>
             <h6 className="text-muted">{author}</h6>
-            <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p className="card-text">{description}</p>
             <div className="my-button-container">
-              <button type="button" class="btn btn-danger" aria-label="Close">
+              <button type="button" className="btn btn-danger" aria-label="Close" onClick={handleDelete}>
                 <span aria-hidden="true">Delete</span>
               </button>
             </div>
