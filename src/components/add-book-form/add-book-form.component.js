@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 
 import './add-book-form.style.scss';
 
@@ -6,6 +6,15 @@ const AddBookForm = ({ addBook, categoryId }) => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [description, setDescription] = useState('');
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+
+  useEffect(() => {
+    if (title && author && description) {
+      setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
+    }
+  }, [title, author, description]);
 
   const handleTitleChange = event => setTitle(event.target.value);
 
@@ -13,10 +22,15 @@ const AddBookForm = ({ addBook, categoryId }) => {
 
   const handleDescriptionChange = event => setDescription(event.target.value);
 
-  const handleSubmit = () => addBook({ author, description, title, status: categoryId });
+  const handleSubmit = () => {
+    addBook({ author, description, title, status: categoryId });
+    setAuthor('');
+    setTitle('');
+    setDescription('');
+  };
 
   return (
-    <form className="my-form-section" onSubmit={handleSubmit}>
+    <div className="my-form-section">
       <label>Add a book:</label>
       <div className="form-group">
         <input
@@ -49,10 +63,12 @@ const AddBookForm = ({ addBook, categoryId }) => {
           />
       </div>
       <button
-        type="submit"
+        type="button"
         className="btn btn-primary float-right"
+        onMouseEnter={handleSubmit}
+        disabled={buttonDisabled}
       >Add book</button>
-    </form>
+    </div>
   )
 };
 
