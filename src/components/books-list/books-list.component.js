@@ -13,7 +13,7 @@ const BooksList = ({ books = [], deleteBook }) => {
   const getPaginationItems = noOfPages => {
     const items = [];
     for(let i = 1; i <= noOfPages; i++) {
-      items.push(<li className={`page-item ${currentPage === i && 'active'}`}><a className="page-link">{i}</a></li>)
+      items.push(<li className={`page-item ${currentPage === i && 'active'}`} key={i}><a className="page-link">{i}</a></li>)
     }
 
     return items;
@@ -51,8 +51,8 @@ const BooksList = ({ books = [], deleteBook }) => {
   return (
     <div className="col">
       <div className="list-group my-list-group">
-        {books.slice((currentPage - 1) * 3, currentPage * 3).map(({ title, author, description, id }) => (
-          <BookCard title={title} author={author} description={description} deleteBook={deleteBook} id={id} key={id} />
+        {books.slice((currentPage - 1) * 3, currentPage * 3).map(({ title, author, description, id, image }) => (
+          <BookCard title={title} author={author} description={description} deleteBook={deleteBook} id={id} key={id} image={image} />
         ))}
       </div>
       {renderPagination(books.length)}

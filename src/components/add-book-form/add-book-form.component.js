@@ -2,11 +2,22 @@ import React, {useEffect, useState} from 'react';
 
 import './add-book-form.style.scss';
 
-const AddBookForm = ({ addBook, categoryId }) => {
-  const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
-  const [description, setDescription] = useState('');
-  const [buttonDisabled, setButtonDisabled] = useState(true);
+const AddBookForm = ({ addBook, categoryId, selectedBook }) => {
+  const [title, setTitle] = useState(selectedBook?.title);
+  const [author, setAuthor] = useState(selectedBook?.author);
+  const [description, setDescription] = useState(selectedBook?.desc);
+  const [image, setImage] = useState(selectedBook?.image);
+  const [buttonDisabled, setButtonDisabled] = useState(!selectedBook);
+
+  useEffect(() => {
+    if (!selectedBook) return;
+
+    const { title, author, description, image } = selectedBook;
+    setTitle(title);
+    setAuthor(author);
+    setDescription(description);
+    setImage(image);
+  }, [selectedBook]);
 
   useEffect(() => {
     if (title && author && description) {
@@ -23,7 +34,7 @@ const AddBookForm = ({ addBook, categoryId }) => {
   const handleDescriptionChange = event => setDescription(event.target.value);
 
   const handleSubmit = () => {
-    addBook({ author, description, title, status: categoryId });
+    addBook({ author, description, title, status: categoryId, image });
     setAuthor('');
     setTitle('');
     setDescription('');

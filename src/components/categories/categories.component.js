@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import AddBookForm from 'components/add-book-form/add-book-form.component';
+import SearchBook from 'components/search-book.component/search-book.component';
 
 import './categories.style.scss';
 
 const Categories = ({ addBook, categories = [], changeCategory }) => {
   const [selectedCategoryId, setSelectedCategoryId] = useState(0);
+  const [selectedBook, setSelectedBook] = useState();
 
   const handleCategoryChange = (categoryId) => {
     setSelectedCategoryId(categoryId);
     changeCategory(categoryId);
   };
+
+  const handleBookSelection = book => setSelectedBook(book);
 
   return (
     <div className="col-4">
@@ -20,17 +24,10 @@ const Categories = ({ addBook, categories = [], changeCategory }) => {
           key={id}
         >
           {name}
-          {/*<span className="badge badge-primary badge-pill">3</span>*/}
         </li>
       ))}
-      <div className="input-group mb-3 my-category-section">
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Book title"
-        />
-      </div>
-      <AddBookForm addBook={addBook} categoryId={selectedCategoryId} />
+      <SearchBook selectBook={handleBookSelection} />
+      <AddBookForm addBook={addBook} categoryId={selectedCategoryId} selectedBook={selectedBook}/>
     </div>
   );
 };

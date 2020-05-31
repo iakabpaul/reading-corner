@@ -48,6 +48,28 @@
       "author": "Eduardo Porter",
       "description": "In this fascinating book, Porter sees the matrix of race in America. Weaving together social science research and historical context, he dissects how racism infects every stratum of American society, from unions to public education to immigration policy. Porter, a New York Times economics reporter who has covered the intersection of race and economics around the world, is uniquely conversant and globally-minded on these issues. ",
       "status": 2
+    },
+    {
+      "author": "Naoise Dolan",
+      "description": "In this wry, stylish debut, Dolan sets her sights on Ava, an Irish expat teaching English to the wealthy children of Hong Kong. Ava soon becomes romantically entangled with Julian, a rich banker who can’t commit, as well as with Edith, a lawyer who inspires both envy and desire. In this witty satire of the haves and have nots, Dolan explores tender, insightful truths about the vagaries of modern love.",
+      "title": "Exciting Times",
+      "status": 0,
+      "id": 5
+    },
+    {
+      "author": "asdf",
+      "description": "asdf",
+      "title": "asdf",
+      "status": 0,
+      "id": 6
+    },
+    {
+      "author": "Heidi Schoof",
+      "description": "A biography of the Civil War spy who provided Union generals with secret information that helped the North defeat the South.",
+      "title": "Elizabeth Van Lew",
+      "status": 0,
+      "image": "http://books.google.com/books/content?id=h5FUHOBmOQAC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "id": 7
     }
   ]
 }

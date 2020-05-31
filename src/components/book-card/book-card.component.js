@@ -1,7 +1,7 @@
 import React from 'react';
 import './book-card.style.scss';
 
-const BookCard = ({ author, title, description, deleteBook, id }) => {
+const BookCard = ({ author, title, description, deleteBook, id, image }) => {
 
   const handleDelete = () => deleteBook(id);
 
@@ -9,7 +9,7 @@ const BookCard = ({ author, title, description, deleteBook, id }) => {
     <div className="card mb-3">
       <div className="row no-gutters">
         <div className="col-md-3 my-col">
-          <img src={require('assets/img/book.png')} className="card-img" alt="..." />
+          <img src={image || require('assets/img/book.png')} className="card-img" alt="..." />
         </div>
         <div className="col-md-8 my-col">
           <div className="card-body">
