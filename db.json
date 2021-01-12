@@ -22,13 +22,6 @@
       "status": 0
     },
     {
-      "id": 1,
-      "title": "Memorial Drive",
-      "author": "Natasha Tretheway",
-      "description": "For Natasha Trethewey, the end is very much the beginning, for both her startling new memoir and, as we learn across its pages, the second iteration of herself. The work opens in the immediate aftermath of her mother’s murder—committed by Trethewey’s former stepfather when the author was just 19—before confronting the years preceding the event, which she admits she’d long treated with “willed amnesia buried deep in me like a root.” ",
-      "status": 0
-    },
-    {
       "id": 2,
       "title": "The Jetsetters",
       "author": "Amanda Eyre Ward",
@@ -71,5 +64,6 @@
       "image": "http://books.google.com/books/content?id=h5FUHOBmOQAC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "id": 7
     }
-  ]
+  ],
+  "users": []
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useMemo} from 'react';
 import BookCard from 'components/book-card/book-card.component';
 
 import './book-list.style.scss';
@@ -13,7 +13,11 @@ const BooksList = ({ books = [], deleteBook }) => {
   const getPaginationItems = noOfPages => {
     const items = [];
     for(let i = 1; i <= noOfPages; i++) {
-      items.push(<li className={`page-item ${currentPage === i && 'active'}`} key={i}><a className="page-link">{i}</a></li>)
+      items.push(
+          <li className={`page-item ${currentPage === i && 'active'}`} key={i}>
+            <a className="page-link" onClick={() => setCurrentPage(i)}>{i}</a>
+          </li>
+      );
     }
 
     return items;
