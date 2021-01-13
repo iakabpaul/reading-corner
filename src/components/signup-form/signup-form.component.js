@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
-import { useCookies } from 'react-cookie';
 import { useHistory } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap'
 import UsersService from "../../services/users.service";
 
-import './login-form.styles.scss';
+import './signup-form.styles.scss';
 
-const LoginForm = () => {
+const SignupForm = () => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [validated, setValidated] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
-  const [cookies, setCookie] = useCookies(['name']);
   const history = useHistory();
+
+  const handleNameChange = event => {
+    setName(event.target.value);
+    errorMessage && setErrorMessage(null);
+  }
 
   const handleEmailChange = event => {
     setEmail(event.target.value);
@@ -24,33 +28,45 @@ const LoginForm = () => {
     errorMessage && setErrorMessage(null);
   }
 
-  const getUserData = email => UsersService.getUser(email)
-    .then((response) => {
-      localStorage.setItem('user-data', JSON.stringify(response.data[0]));
-      history.push('/home');
-    });
-
   const handleSubmit = (event) => {
     event.preventDefault();
     event.stopPropagation();
 
-    UsersService.login(email, password)
+    const user = {
+      name,
+      email,
+      password,
+    }
+
+    UsersService.addUser(user)
       .then((response) => {
-        setCookie('sessionId', response.data.accessToken);
-        getUserData(email);
-        setErrorMessage(null);
         setValidated(true);
+        setErrorMessage(null);
+        history.push('/login');
       })
       .catch(function (error) {
-        console.log(error);
-        setErrorMessage('Wrong email or password');
+        setErrorMessage('Something went wrong!');
         event.preventDefault();
         event.stopPropagation();
       })
   };
 
   return (
-    <Form className="login-form-section" validated={validated} onSubmit={handleSubmit}>
+    <Form className="signup-form-section" validated={validated} onSubmit={handleSubmit}>
+      <Form.Group controlId="formBasicName">
+        <Form.Label>Name</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Enter name"
+          required
+          value={name}
+          onChange={handleNameChange}
+        />
+        <Form.Control.Feedback type="invalid">
+          Please type in a valid email.
+        </Form.Control.Feedback>
+      </Form.Group>
+
       <Form.Group controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control
@@ -73,10 +89,11 @@ const LoginForm = () => {
           required
           value={password}
           onChange={handlePasswordChange}
+          minlength={4}
         />
       </Form.Group>
       <Button variant="primary" type="submit">
-        Log in
+        Sign up
       </Button>
       {errorMessage &&
       <p className="error-message" style={{color:'red'}}>{errorMessage}</p>
@@ -85,4 +102,4 @@ const LoginForm = () => {
   )
 };
 
-export default LoginForm;
+export default SignupForm;

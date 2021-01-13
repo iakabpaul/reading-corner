@@ -79,6 +79,24 @@
       "image": "http://books.google.com/books/content?id=3-WEDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "userId": 1,
       "id": 8
+    },
+    {
+      "author": "Sally Schofer Mathews",
+      "description": "Tells how the Aztecs established an empire in Mexico and what happened when they, led by Montezuma, encountered Cortâes and the Spaniards in the early sixteenth century.",
+      "title": "The Sad Night",
+      "status": 0,
+      "image": "http://books.google.com/books/content?id=-jdFfD1MqqEC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "userId": 3,
+      "id": 9
+    },
+    {
+      "author": "Andrei Chira",
+      "description": "Începută inițial ca o carte de dezvoltare personală cu sfaturi pe care i le-aș da copilului meu, a devenit un proces terapeutic în care am retrăit experiențe și emoții din trecut, lucruri pe care nu le-am mai dezvăluit nimănui.",
+      "title": "Nu vreau să mai fiu sărac",
+      "status": 0,
+      "image": "http://books.google.com/books/content?id=lmQREAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "userId": 3,
+      "id": 10
     }
   ],
   "users": []

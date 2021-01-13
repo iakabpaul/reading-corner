@@ -53,7 +53,8 @@ const HomePage = () => {
   };
 
   useEffect(() => {
-    getBooks(0, 1);
+    console.log(user.id);
+    getBooks(0, user.id);
     getCategories();
   }, []);
 

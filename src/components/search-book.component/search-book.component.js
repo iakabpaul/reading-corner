@@ -29,7 +29,7 @@ const SearchBook = ({ selectBook }) => {
   };
 
   const setSelected = (selectedItems) => {
-    const { title, author, description, image } = selectedItems[0];
+    const { title, author, description, image } = selectedItems[0] || {};
     selectBook({
       author,
       description,
