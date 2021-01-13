@@ -13,11 +13,12 @@ const HomePage = () => {
   const [cookies, setCookie, removeCookie] = useCookies(['name'])
   const [books, setBooks] = useState();
   const [categories, setCategories] = useState();
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user-data')));
   const appRef = useRef({ selectedCategoryId: 0 });
 
   const addBook = (book) => {
     BooksService.addBook(book)
-      .then(() => getBooks(appRef.current.selectedCategoryId))
+      .then(() => getBooks(appRef.current.selectedCategoryId, user.id))
       .catch(function (error) {
         console.log(error);
       });
@@ -25,14 +26,14 @@ const HomePage = () => {
 
   const deleteBook = (bookId) => {
     BooksService.deleteBook(bookId)
-      .then(() => getBooks(appRef.current.selectedCategoryId))
+      .then(() => getBooks(appRef.current.selectedCategoryId, user.id))
       .catch(function (error) {
         console.log(error);
       });
   };
 
-  const getBooks = (categoriyId = 0) => {
-    BooksService.getBooks(categoriyId)
+  const getBooks = (categoriyId = 0, userId) => {
+    BooksService.getBooks(categoriyId, userId)
       .then((response) => {
         setBooks([].concat(response.data || []));
       })
@@ -52,12 +53,12 @@ const HomePage = () => {
   };
 
   useEffect(() => {
-    getBooks();
+    getBooks(0, 1);
     getCategories();
   }, []);
 
   const changeCategory = categoryId => {
-    getBooks(categoryId);
+    getBooks(categoryId, user.id);
     appRef.current.selectedCategoryId = categoryId;
   };
 

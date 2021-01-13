@@ -1,61 +1,87 @@
 import React, { useState } from 'react';
 import { useCookies } from 'react-cookie';
+import { useHistory } from 'react-router-dom';
+import { Form, Button } from 'react-bootstrap'
 import UsersService from "../../services/users.service";
 
 import './login-form.styles.scss';
-import {useHistory} from "react-router-dom";
 
 const LoginForm = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [validated, setValidated] = useState(false);
+  const [errorMessage, setErrorMessage] = useState();
   const [cookies, setCookie] = useCookies(['name']);
   const history = useHistory();
 
-  const handleUsernameChange = event => setUsername(event.target.value);
+  const handleEmailChange = event => {
+    setEmail(event.target.value);
+    errorMessage && setErrorMessage(null);
+  }
 
-  const handlePasswordChange = event => setPassword(event.target.value);
+  const handlePasswordChange = event => {
+    setPassword(event.target.value);
+    errorMessage && setErrorMessage(null);
+  }
 
-  const handleSubmit = () => {
-    UsersService.login(username, password)
+  const getUserData = email => UsersService.getUser(email)
+    .then((response) => {
+      localStorage.setItem('user-data', JSON.stringify(response.data[0]));
+    });
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    UsersService.login(email, password)
       .then((response) => {
         setCookie('sessionId', response.data.accessToken);
-        console.log(cookies);
+        getUserData(email);
+        setErrorMessage(null);
+        setValidated(true);
         history.push('/home')
       })
       .catch(function (error) {
         console.log(error);
+        setErrorMessage('Wrong email or password');
+        event.preventDefault();
+        event.stopPropagation();
       })
   };
 
   return (
-    <div className="login-form-section">
-      <div className="form-group">
-        <input
-          type="text"
-          className="form-control"
-          id="username"
-          placeholder="Username"
-          value={username}
-          onChange={handleUsernameChange}
+    <Form className="login-form-section" validated={validated} onSubmit={handleSubmit}>
+      <Form.Group controlId="formBasicEmail">
+        <Form.Label>Email address</Form.Label>
+        <Form.Control
+          type="email"
+          placeholder="Enter email"
+          required
+          value={email}
+          onChange={handleEmailChange}
         />
-      </div>
-      <div className="form-group">
-        <input
+        <Form.Control.Feedback type="invalid">
+          Please type in a valid email.
+        </Form.Control.Feedback>
+      </Form.Group>
+
+      <Form.Group controlId="formBasicPassword">
+        <Form.Label>Password</Form.Label>
+        <Form.Control
           type="password"
-          className="form-control"
-          id="password"
           placeholder="Password"
+          required
           value={password}
           onChange={handlePasswordChange}
         />
-      </div>
-      <button
-        type="button"
-        className="btn btn-primary float-right"
-        onClick={handleSubmit}
-        disabled={false}
-      >Login</button>
-    </div>
+      </Form.Group>
+      <Button variant="primary" type="submit">
+        Log in
+      </Button>
+      {errorMessage &&
+      <p className="error-message" style={{color:'red'}}>{errorMessage}</p>
+      }
+    </Form>
   )
 };
 

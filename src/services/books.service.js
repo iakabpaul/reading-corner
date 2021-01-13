@@ -6,7 +6,7 @@ const deleteBook = bookId => axios.delete(`http://localhost:4000/books/${bookId}
 
 const getBook = bookId => axios.get(`http://localhost:4000/books/${bookId}`);
 
-const getBooks = categoriyId => axios.get(`http://localhost:4000/books?status=${categoriyId}`);
+const getBooks = (categoriyId, userId) => axios.get(`http://localhost:4000/books?status=${categoriyId}&userId=${userId}`);
 
 export default {
   addBook,

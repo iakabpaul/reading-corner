@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { AsyncTypeahead } from 'react-bootstrap-typeahead';
 import axios from 'axios';
 
-const SeachBook = ({ selectBook }) => {
+const SearchBook = ({ selectBook }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [options, setOptions] = useState([]);
 
@@ -68,4 +68,4 @@ const SeachBook = ({ selectBook }) => {
   );
 };
 
-export default SeachBook;
+export default SearchBook;

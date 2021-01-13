@@ -7,6 +7,7 @@ const AddBookForm = ({ addBook, categoryId, selectedBook }) => {
   const [author, setAuthor] = useState(selectedBook?.author);
   const [description, setDescription] = useState(selectedBook?.desc);
   const [image, setImage] = useState(selectedBook?.image);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user-data')));
   const [buttonDisabled, setButtonDisabled] = useState(!selectedBook);
 
   useEffect(() => {
@@ -34,7 +35,7 @@ const AddBookForm = ({ addBook, categoryId, selectedBook }) => {
   const handleDescriptionChange = event => setDescription(event.target.value);
 
   const handleSubmit = () => {
-    addBook({ author, description, title, status: categoryId, image });
+    addBook({ author, description, title, status: categoryId, image, userId: user.id });
     setAuthor('');
     setTitle('');
     setDescription('');
