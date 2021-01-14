@@ -77,7 +77,7 @@ const AddBookForm = ({ addBook, categoryId, selectedBook }) => {
       <button
         type="button"
         className="btn btn-primary float-right"
-        onMouseEnter={handleSubmit}
+        onClick={handleSubmit}
         disabled={buttonDisabled}
       >Add book</button>
     </div>

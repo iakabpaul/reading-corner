@@ -16,6 +16,10 @@ const HomePage = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user-data')));
   const appRef = useRef({ selectedCategoryId: 0 });
 
+  useEffect(() => {
+    getBooks(appRef.current.selectedCategoryId, user.id);
+  }, [history]);
+
   const addBook = (book) => {
     BooksService.addBook(book)
       .then(() => getBooks(appRef.current.selectedCategoryId, user.id))
@@ -65,11 +69,12 @@ const HomePage = () => {
 
   const handleLogout = () => {
     removeCookie('sessionId');
+    localStorage.removeItem('user-data');
 
     history.push(`/login`);
   }
 
-  if (!cookies?.sessionId) {
+  if (!cookies?.sessionId || !localStorage.getItem('user-data')) {
     return <Redirect to="/login" />;
   }
 

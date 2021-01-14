@@ -1,15 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './book-card.style.scss';
 import { FacebookShareButton, FacebookIcon } from 'react-share';
 import { useHistory } from 'react-router-dom';
+import { FormControl } from 'react-bootstrap'
+import BooksService from '../../services/books.service';
 
-const BookCard = ({ author, title, description, deleteBook, id, image, detailed = false }) => {
+const BookCard = ({ author, title, description, deleteBook, id, image, detailed = false, userId, status }) => {
   const history = useHistory();
+  const [descr, setDescr] = useState(description);
+
+  useEffect(() => {
+    setDescr(description);
+  }, [description])
 
   const handleDelete = () => deleteBook(id);
 
+  const handleDescriptionChange = event => setDescr( event.target.value);
+
   const navigateToDetails = () => {
     history.push(`/${id}/details`);
+  }
+
+  const updateBook = () => {
+    const book = {
+      author,
+      description: descr,
+      image,
+      status,
+      title,
+      userId,
+    }
+
+    BooksService.updateBook(book, id)
+      .then(() => {})
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   return (
@@ -28,17 +54,27 @@ const BookCard = ({ author, title, description, deleteBook, id, image, detailed 
             <div className="my-card-content">
               <div className="my-card-header">
                 <h5 className="card-title">{title}</h5>
-                {/*<p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>*/}
               </div>
               <h6 className="text-muted">{author}</h6>
-              <p className="card-text">{description}</p>
+              {detailed ? (
+                <FormControl
+                  as="textarea"
+                  aria-label="With textarea"
+                  className="card-text"
+                  onBlur={updateBook}
+                  onChange={handleDescriptionChange}
+                  value={descr}
+                />
+              ): (
+                <p className="card-text">{description}</p>
+              )}
             </div>
             <div className={`my-button-container ${detailed ? 'detailed' : ''}`}>
               {detailed && (
                 <FacebookShareButton
-                  url={"http://www.camperstribe.com"}
-                  quote={"CampersTribe - World is yours to explore"}
-                  hashtag="#camperstribe"
+                  url={window.location.href}
+                  quote={"Reading Corner - For book lovers"}
+                  hashtag="#readingcorner"
                   className=""
                 >
                   <FacebookIcon size={26} />
